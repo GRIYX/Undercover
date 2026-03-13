@@ -853,8 +853,8 @@ let countdownInterval = null;
 
 // ===== WS =====
 function connect(onOpen) {
-  const proto = location.protocol === 'https:' ? 'wss' : 'ws';
-  ws = new WebSocket(`${proto}://${location.host}`);
+  const proto = location.protocol === 'https:' ? 'wss://' : 'ws://';
+  ws = new WebSocket(`${proto}${location.host}`);
   ws.onopen = onOpen;
   ws.onmessage = e => handleMessage(JSON.parse(e.data));
   ws.onerror = () => notify('Erreur de connexion', 'error');
